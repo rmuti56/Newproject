@@ -1,0 +1,145 @@
+body {
+  background: aliceblue;
+  font-family: "Open Sans", sans-serif;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  font-family: sans-serif;
+  list-style: none;
+  text-decoration: none;
+}
+
+.fix {
+  top: 0;
+  width: 100%;
+  z-index: 9999 !important;
+}
+
+.middle {
+  overflow: hidden;
+  position: fixed;
+  top: 50px;
+  width: 270px;
+}
+
+.menu {
+  width: 270px;
+  border-radius: 8px;
+  overflow: hidden;
+}
+
+.item {
+  border-top: 1px solid DodgerBlue;
+  overflow: hidden;
+}
+
+.btnm {
+  display: block;
+  padding: 16px 20px;
+  background: #3498db;
+  color: white;
+  position: relative;
+  text-align: left;
+}
+
+.btnm i {
+  margin-right: 10px;
+}
+
+.smenu {
+  background: LightGray;
+  overflow: hidden;
+  transition: max-height 0.3s;
+  max-height: 0;
+}
+
+.smenu i {
+  margin-right: 10px;
+}
+
+.smenu a {
+  display: block;
+  padding: 16px 26px;
+  color: white;
+  font-size: 14px;
+  margin: 4px 0;
+  position: relative;
+}
+
+.smenu a:before {
+  content: "";
+  position: absolute;
+  width: 6px;
+  height: 100%;
+  background: #3498db;
+  left: 0;
+  top: 0;
+  transition: 0.3s;
+  opacity: 0;
+}
+
+.smenu a:hover:before {
+  opacity: 1;
+}
+
+.item:target .smenu {
+  max-height: 10em;
+}
+
+.circle {
+  /* ชื่อคลาสต้องตรงกับ <img class="circle"... */
+  height: 50px;
+  /* ความสูงปรับให้เป็นออโต้ */
+  width: 50px;
+  /* ความสูงปรับให้เป็นออโต้ */
+  border: 3px solid #fff;
+  /* เส้นขอบขนาด 3px solid: เส้น #fff:โค้ดสีขาว */
+  border-radius: 50%;
+  /* ปรับเป็น 50% คือความโค้งของเส้นขอบ*/
+  box-shadow: 0 0 5px rgba(0, 0, 0, 0.2);
+  /* เงาของรูป */
+}
+
+#thumbnail img {
+  width: 100px;
+  height: 100px;
+  margin: 5px;
+}
+
+#thumbnail div.removepic:hover {
+  display: inline-block;
+  border: 1px dashed red;
+}
+
+.fontPost {
+  font-size: 15px;
+  color: gray;
+}
+
+.imagePost {
+  width: 20px;
+  height: 40px;
+}
+
+.iconLike {
+  color: pink;
+}
+
+.textComment {
+  border-radius: 20px;
+  border-color: dimgray;
+  color: gray;
+  text-indent: 20px;
+  height: 40px;
+  width: 100%;
+  border-width: thin;
+  background-color: #fffafa;
+}
+
+.choice {
+  color: gray;
+  float: right;
+  background: #f5f5f5;
+}

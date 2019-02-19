@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>LOG IN</title>
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link rel="stylesheet" href="/css/font-awesome.min.css" />
+  <link rel="stylesheet" href="/css/custom.css" />
+</head>
+
+<body>
+  <br />
+  <br />
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4 login-box mx-auto">
+        <h2 class="login-header " style="text-align:center;">
+          REGISTER
+        </h2>
+        <br />
+        <form class="login-container" id="registerForm">
+          <div class="form-group">
+            <label for="email">Email</label>
+            <input type="email" class="form-control" id="email" name="email" placeholder="Email" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Password</label>
+            <input type="password" class="form-control" id="password" name="password" placeholder="Password" required />
+          </div>
+          <div class="form-group">
+            <label for="password">Confirm Password</label>
+            <input type="password" class="form-control" id="confirmPassword" name="confirmPassword" placeholder="Confirm Password"
+              required />
+          </div>
+          <button type="submit" id="loginButton" class="btn btn-info btn-block">
+            Register
+          </button>
+          <span id="wait" style="text-align:center; color: green; display:none;">รอสักครู่...</span>
+          <a href="login.html">
+            <p>Alraady have an account?</p>
+          </a>
+        </form>
+      </div>
+    </div>
+  </div>
+  <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+  <script src="/js/firebase.js"></script>
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/js/register.js"></script>
+</body>
+
+</html>

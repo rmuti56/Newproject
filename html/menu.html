@@ -1,0 +1,137 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Home</title>
+
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/custom.css" />
+  <link rel="stylesheet" href="/css/home.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <a class="navbar-brand" href="#">HOME</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse"></div>
+  </nav>
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="middle">
+          <input class="form-control mr-sm-2 mt-3" type="search" style="border-color:deepskyblue; " placeholder="Search"
+            id="search" />
+          <br />
+          <div class="menu">
+            <li class="item" id="profile">
+              <a href="#profile" class="btnm"><img class="circle" src="/image/loading.gif" id="pofileImageMenu" />&nbsp;&nbsp;<span
+                  id="loginEmail"></span></a>
+              <div class="smenu">
+                <a href=""><i class="fa fa-list-alt"></i>โพสต์</a>
+              </div>
+            </li>
+            <li class="item" id="globe">
+              <a href="#globe" class="btnm"><i class="fa fa-globe"></i>ข่าวสาร</a>
+              <div class="smenu">
+                <a href="./menu.html"><i class="fa fa-list-alt"></i>โพสต์</a>
+              </div>
+            </li>
+            <li class="item" id="messages">
+              <a href="#messages" class="btnm"><i class="fa fa-envelope-o"></i>ข้อความ</a>
+              <div class="smenu">
+                <a href=""><i class="fa fa-flickr"></i>ล่าสุด</a>
+                <a href=""><i class="fa fa-plus-square"></i>ข้อความใหม่</a>
+              </div>
+            </li>
+            <li class="item" id="config">
+              <a href="#config" class="btnm"><i class="fa fa-cogs"></i>ตั้งค่า</a>
+              <div class="smenu">
+                <a href="./addProfile.html"><i class="fa fa-user"></i>ข้อมูลส่วนตัว</a>
+                <a href=""><i class="fa fa-lock"></i>รหัสผ่าน</a>
+              </div>
+            </li>
+            <li class="item">
+              <a href="" class="btnm" id="logOut"><i class="fa fa-sign-out"></i>ออกจากระบบ</a>
+            </li>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8" style="top: 10px; ">
+        <div class="card" id="formPost">
+          <div class="card-header">
+            สร้างโพสต์
+            <i class="fa fa-times" style="float:right; color: dimgray; display:none;" id="times"></i>
+          </div>
+
+          <div class="card-body">
+            <form class="login-container" id="postForm">
+              <div class="row">
+                <div class="col-md-1">
+                  <div class="media">
+                    <a href="#">
+                      <img class="circle" src="/image/loading.gif" style="width: 50px; height:50px;" id="pofileImagePost" />
+                    </a>
+                  </div>
+                </div>
+                <div class="col-md-10">
+                  <input type="text" id="textPost" placeholder="นำเสนอเรื่องราวของคุณ" style="width:100%; height:50px;border: 0px;" />
+                </div>
+              </div>
+              <br />
+              <div class="row">
+                <div class="col-md-12">
+                  <div id="gallery"></div>
+                </div>
+              </div>
+
+              <hr />
+              <div class="row">
+                <div class="col-md-4">
+                  <label for="upload" class="custom-file-upload " style="background-color:#F0FFFF; border-radius: 20px;">
+                    <img class="img-upload" src="/image/focus_icon.png" style="width:40px; height:40px;" />
+                    <span clas="text-upload">รูปภาพ/วีดีโอ </span>&nbsp;
+                  </label>
+                  <input type="file" id="upload" accept="image/*" style="width: 150px; display: none;" name="files[]"
+                    multiple />
+                </div>
+                <div class="col-md-4" style="margin-right: 0;margin-left: auto;">
+                  <div class="form-group" style="display:none;float:right;" id="showButton">
+                    <button class="btn btn-info btn-block" id="buttonPost" style="float:right" disabled>
+                      โพสต์
+                    </button>
+                  </div>
+                </div>
+               
+              </div>
+              
+            </form>
+          </div>
+        </div>
+        <br />
+
+        <div id="allPost">
+
+        </div>
+
+
+        <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+        <script src="/node_modules/moment/moment.js"></script>
+        <script src="https://unpkg.com/b64-to-blob@1.2.19/b64toBlob.js"></script>
+        <script src="/js/firebase.js"></script>
+        <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+        <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+        <script src="/js/menu.js"></script>
+        <script src="/js/getPost.js"></script>
+</body>
+
+</html>

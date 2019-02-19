@@ -1,0 +1,160 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <meta http-equiv="X-UA-Compatible" content="ie=edge" />
+  <title>LOG IN</title>
+  <link rel="stylesheet" href="/node_modules/bootstrap/dist/css/bootstrap.min.css" />
+  <link href="//maxcdn.bootstrapcdn.com/font-awesome/4.7.0/css/font-awesome.min.css" rel="stylesheet" />
+  <link rel="stylesheet" href="/css/custom.css" />
+  <link rel="stylesheet" href="/css/home.css" />
+</head>
+
+<body>
+  <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-primary">
+    <a class="navbar-brand" href="#">HOME</a>
+    <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarCollapse" aria-controls="navbarCollapse"
+      aria-expanded="false" aria-label="Toggle navigation">
+      <span class="navbar-toggler-icon"></span>
+    </button>
+    <div class="collapse navbar-collapse" id="navbarCollapse"></div>
+  </nav>
+
+
+
+
+  <div class="container">
+    <div class="row">
+      <div class="col-md-4">
+        <div class="middle">
+          <input class="form-control mr-sm-2 mt-3" type="search" style="border-color:deepskyblue; " placeholder="Search"
+            id="search">
+          <br>
+          <div class="menu">
+
+            <li class="item" id="profile">
+              <a href="#profile" class="btnm"><img class="circle" src="/image/loading.gif" style="width: 50px; height:50px"
+                  id="pofileImageMenu">&nbsp;&nbsp;<span id="loginEmail"></span></a>
+              <div class="smenu">
+                <a href=""><i class="fa fa-list-alt"></i>โพสต์</a>
+              </div>
+            </li>
+            <li class="item" id="globe">
+              <a href="#globe" class="btnm"><i class="fa fa-globe"></i>ข่าวสาร</a>
+              <div class="smenu">
+                <a href="./menu.html"><i class="fa fa-list-alt"></i>โพสต์</a>
+
+              </div>
+            </li>
+            <li class="item" id="messages">
+              <a href="#messages" class="btnm"><i class="fa fa-envelope-o"></i>ข้อความ</a>
+              <div class="smenu">
+                <a href=""><i class="fa fa-flickr"></i>ล่าสุด</a>
+                <a href=""><i class="fa fa-plus-square"></i>ข้อความใหม่</a>
+              </div>
+            </li>
+            <li class="item" id="config">
+              <a href="#config" class="btnm"><i class="fa fa-cogs"></i>ตั้งค่า</a>
+              <div class="smenu">
+                <a href="./addProfile.html"><i class="fa fa-user"></i>ข้อมูลส่วนตัว</a>
+                <a href=""><i class="fa fa-lock"></i>รหัสผ่าน</a>
+              </div>
+            </li>
+            <li class="item">
+              <a href="login.html" class="btnm" onclick="logOut()"><i class="fa fa-sign-out"></i>ออกจากระบบ</a>
+            </li>
+          </div>
+        </div>
+      </div>
+
+      <div class="col-md-8 login-box">
+        <h2 class="login-header" style="text-align:center;"><i class="fa fa-user">&nbsp;</i>
+          เพิ่มข้อมูลส่วนตัว
+        </h2>
+
+        <hr>
+        <form class="login-container" id="addForm">
+          <div class="form-group">
+            <div class="row justify-content-md-center">
+              <div>
+                <img style="width: 150px; height: 150px;" id="showImage" src="/image/loading.gif">
+              </div>
+            </div>
+            <br>
+            <div class="row justify-content-md-center">
+
+              <label for="upload" class="custom-file-upload " style="background-color:#F0FFFF; border-radius: 20px;">
+                <img class="img-upload" src="/image/focus_icon.png" style="width:40px; height:40px;" />
+                <span clas="text-upload">รูปภาพ/วีดีโอ </span>&nbsp;
+              </label>
+              <input type="file" id="upload" accept="image/*" style="width: 150px; display: none;" onchange="readURL(this);" />
+
+            </div>
+          </div>
+
+          <div class="form-group">
+            <label for="text">ชื่อ</label>
+            <input type="text" class="form-control" id="name" placeholder="กรอกชื่อ" required />
+          </div>
+          <div class="form-group">
+            <label for="text">นามสกุล</label>
+            <input type="text" class="form-control" id="lastName" placeholder="กรอกนามสกุล" required />
+          </div>
+
+          <div class="form-group">
+            <div class="row">
+
+              <div class="col align-self-start"> <label for="number">อายุ</label>
+                <input type="number" id="age" name="age" value="" min="5" max="150" required>
+                <lable> ปี</lable>
+              </div>
+              <div class="col align-self-end"><label>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;เบอร์โทรศัพท์: </label>&nbsp;
+                <input type="tel" id="tel" required>
+              </div>
+            </div>
+          </div>
+          <div class="form-group">
+            <label>เพศ</label>&nbsp;&nbsp;
+            <input type="radio" name="sex" value="ชาย" required>&nbsp;ชาย
+            &nbsp;&nbsp; <input type="radio" name="sex" value="หญิง">&nbsp;หญิง
+            &nbsp;&nbsp; <input type="radio" name="sex" value="อื่นๆ">&nbsp;อื่นๆ
+
+          </div>
+
+
+          <hr>
+          <button type="submit" id="addButton" class="btn btn-info btn-block" style="text-align:center; ">
+            ยืนยันการเพิ่มข้อมูลส่วนตัว
+          </button>
+
+          <span id="wait" style="text-align: center; display:none; color:green">กำลังเพิ่มข้อมูลส่วนตัว...</span>
+
+
+          </a>
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <script>
+    function readURL(input) {
+      if (input.files && input.files[0]) {
+        var reader = new FileReader();
+        reader.onload = function (e) {
+          $("#showImage").attr("src", e.target.result);
+        };
+        reader.readAsDataURL(input.files[0]);
+      }
+    }
+  </script>
+
+  <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
+  <script src="/js/firebase.js"></script>
+  <script src="/node_modules/jquery/dist/jquery.min.js"></script>
+  <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
+  <script src="/js/insert.js"></script>
+</body>
+
+</html>

@@ -1,0 +1,66 @@
+.login-box {
+  background-color: #cae5e5;
+  padding: 2rem;
+  border-radius: 20px;
+  box-shadow: 5px 10px rgb(140, 139, 139);
+}
+
+.wrong-password {
+  border: 2px solid #e97171;
+}
+
+body {
+  background: aliceblue;
+  font-family: "Open Sans", sans-serif;
+}
+
+.login-header {
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+.login-header {
+  background: rgb(0, 128, 255);
+  padding: 20px;
+  font-size: 1.4em;
+  font-weight: normal;
+  text-align: center;
+  text-transform: uppercase;
+  color: #fff;
+}
+
+.center {
+  position: relative;
+  left: 0;
+  right: 0;
+}
+
+body {
+  min-height: 75rem;
+  padding-top: 3rem;
+}
+
+#gallery>img {
+  width: 250px;
+  height: 250px;
+}
+
+
+textarea:focus,
+input:focus {
+  outline: none;
+}
+
+.img-post {
+  width: 250px;
+  height: auto;
+  text-align: center;
+  margin: auto;
+}
+
+.img-center {
+  max-width: 100%;
+  max-height: 100%;
+  margin: auto;
+  text-align: center;
+}
