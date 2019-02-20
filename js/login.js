@@ -13,16 +13,28 @@ document.querySelector("#loginForm").addEventListener("submit", e => {
     })
     .catch(e => {
       if (e.code === "auth/wrong-password") {
-        alert("รหัสผ่านไม่ถูกต้อง");
-        $("#wait").css("color", "red");
-        $("#wait").text("รหัสผ่านไม่ถูกต้อง");
+        swal({
+          icon: 'error',
+          type: 'error',
+          title: 'ข้อผิดพลาด',
+          text: 'รหัสผ่านไม่ถูกต้อง...',
+        })
+        $("#wait").css("display", "none");
       } else if (e.code === "auth/user-not-found") {
-        alert("รหัสผ่านไม่ถูกต้อง");
-        $("#wait").css("color", "red");
-        $("#wait").text("ไม่ได้เป็นสมาชิก");
+        swal({
+          icon: 'error',
+          type: 'error',
+          title: 'ข้อผิดพลาด',
+          text: 'ไม่ได้เป็นสมาชิก...',
+        })
+        $("#wait").css("display", "none");
       } else {
-        alert("มีบางอย่างผิดพลาด");
-
+        swal({
+          icon: 'error',
+          type: 'error',
+          title: 'ข้อผิดพลาด',
+          text: '!!!มีบางอย่างผิดพลาด!!!',
+        })
         $("#wait").css("display", "none");
       }
     });
@@ -35,12 +47,9 @@ firebase.auth().onAuthStateChanged(user => {
 });
 
 function logOut() {
-  firebase
-    .auth()
-    .signOut()
-    .then(() => {
-      window.location = "login.html";
-    });
+  firebase.auth().signOut().then(() => {
+    window.location = "login.html";
+  })
 }
 
 // function login() {

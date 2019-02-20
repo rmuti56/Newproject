@@ -7,13 +7,12 @@ $(function () {
       var firebaseRef = firebase.database().ref("user/" + id);
       firebaseRef.on("value", dataSnapshot => {
         if (dataSnapshot.val() !== "") {
-          var age = dataSnapshot.val() && dataSnapshot.val().age;
-          var name = dataSnapshot.val() && dataSnapshot.val().name;
-          var lastName = dataSnapshot.val() && dataSnapshot.val().lastName;
-          var sex = dataSnapshot.val() && dataSnapshot.val().sex;
-          var tel = dataSnapshot.val() && dataSnapshot.val().tel;
-          var pofileImage =
-            dataSnapshot.val() && dataSnapshot.val().pofileImage;
+          var age = dataSnapshot.val().age;
+          var name = dataSnapshot.val().name;
+          var lastName = dataSnapshot.val().lastName;
+          var sex = dataSnapshot.val().sex;
+          var tel = dataSnapshot.val().tel;
+          var pofileImage = dataSnapshot.val().pofileImage || '../image/default.png';
           console.log(age, name, lastName, sex, tel, pofileImage);
           $("#pofileImageMenu").attr("src", pofileImage);
           $("#name").val(name);
@@ -25,17 +24,8 @@ $(function () {
           $("#showImage").attr("src", pofileImage);
         }
       });
-
       //ฟังก์ชั่นสำหรับแสดงที่อัพโหลด
-      function readURL(input) {
-        if (input.files && input.files[0]) {
-          var reader = new FileReader();
-          reader.onload = function (e) {
-            $("#showImage").attr("src", e.target.result);
-          };
-          reader.readAsDataURL(input.files[0]);
-        }
-      }
+
 
       document.querySelector("#addForm").addEventListener("submit", e => {
         //เพิ่มข้อมูลไปยัง firebase
@@ -68,7 +58,10 @@ $(function () {
               sex: mySex
             })
             .then(() => {
-              alert("เพิ่มข้อมูลสำเร็จ");
+              swal({
+                icon: 'success',
+                title: 'บันทึกข้อมูลสำเร็จ'
+              })
             });
         } else {
           let metadata = {
@@ -96,7 +89,10 @@ $(function () {
               });
             })
             .then(() => {
-              alert("เพิ่มข้อมูลสำเร็จ");
+              swal({
+                icon: 'success',
+                title: 'บันทึกข้อมูลสำเร็จ'
+              })
             });
 
           $("#addButton").text("ยืนยันการเพิ่มข้อมูลส่วนตัว");
