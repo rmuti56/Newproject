@@ -16,8 +16,6 @@
       text-decoration: underline;
       cursor: pointer;
     }
-
-
     #allComment {
       text-align: center;
       margin-top: 2rem;
@@ -26,11 +24,29 @@
       padding: 2rem;
       display: none;
     }
+    .selected{
+      color:aqua;
+    }
+    .highlight{
+      background-color: firebrick;
+    }
   </style>
 </head>
 
 <body>
-  <span value="55555"></span>
+  <div>
+    <em title="Bold and Brave">This is a first paragraph.</em>
+    <p id="myid">This is second paragraph.</p>
+    <div id="divid"></div>
+    <input type="text">
+  </div>
+
+  <table border="2">
+    <tr>
+      <th>หัวควย</th>
+    </tr>
+  </table>
+
 
   <script src="https://www.gstatic.com/firebasejs/5.8.2/firebase.js"></script>
   <script src="/node_modules/moment/moment.js"></script>
@@ -39,8 +55,9 @@
   <script src="/node_modules/jquery/dist/jquery.min.js"></script>
   <script src="/node_modules/bootstrap/dist/js/bootstrap.min.js"></script>
   <script src="/node_modules/sweetalert/dist/sweetalert.min.js"></script>
-  <script src="/js/getPost.js"></script>
-  <script src="/js/menu.js"></script>
+  <script src="/js/home.js"></script>
+
+
 </body>
 
 </html>

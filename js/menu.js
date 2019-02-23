@@ -51,6 +51,7 @@ $(function () {
       });
 
       $("#upload").change(function (e) {
+        $("#gallery").css("display", "block");
         $("#showButton").css("display", "block");
         $("#times").css("display", "block")
         imagesPreview(this, "#gallery");

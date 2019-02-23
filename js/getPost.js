@@ -13,12 +13,22 @@ function likePost(id) {
       var lastNameLike = userResult.val().lastName || "";
       var pofileImageLike = userResult.val().pofileImage || "../image/default.png";
 
-      firebase.database().ref("post").child(keyUserPost).child(keyPost).child("likePost").child(userResult.key).set({
-        name: nameLike,
-        lastName: lastNameLike,
-        pofileImage: pofileImageLike,
-        time: new Date()
+      firebase.database().ref("post").child(keyUserPost).child(keyPost).child("likePost").once("value", like => {
+        like.forEach(like => {
+          if (user.uid == like.key) {
+            return firebase.database().ref("post").child(keyUserPost).child(keyPost).child("likePost").child(user.uid).remove();
+          } else {
+            firebase.database().ref("post").child(keyUserPost).child(keyPost).child("likePost").child(userResult.key).set({
+              name: nameLike,
+              lastName: lastNameLike,
+              pofileImage: pofileImageLike,
+              time: new Date()
+            })
+          }
+        })
       })
+
+
     })
   })
 }
@@ -57,6 +67,12 @@ function showComment(id) {
   $('#userAllComment' + key).toggle();
 }
 
+function focusText(id) {
+  var key = $(id).attr('key-focusText');
+  $('#userAllComment' + key).toggle();
+  $('#textComment' + key).focus();
+}
+
 function getWallPost() {
   $('#gallery').empty();
   firebase.auth().onAuthStateChanged(user => {
@@ -70,7 +86,7 @@ function getWallPost() {
         if (user.uid == userResult.key) {
           currentImage = profileImage;
         }
-        firebase.database().ref("post").child(userResult.key).once("value").then(response => {
+        firebase.database().ref("post").child(userResult.key).once("value", response => {
           var data = [];
 
           var keyUserPost = response.key;
@@ -86,13 +102,15 @@ function getWallPost() {
           data.forEach(response => {
 
             var imageArr = '';
+
             var commentArr = '';
+            var likeArr = '';
             var time = moment(response.time).format('DD-MM-YYYY HH:mm:ss');
             const textPost = response.textPost || '';
             const keyPost = response.key;
             var commentCount = 0;
             var likePostCount = 0;
-            firebase.database().ref("post").child(userResult.key).child(keyPost + '/comment').once('value').then(comment => {
+            firebase.database().ref("post").child(userResult.key).child(keyPost + '/comment').on('value', comment => {
               comment.forEach(comment => {
 
                 commentArr += ` <div class="col-md-1" >
@@ -104,21 +122,24 @@ function getWallPost() {
 
               })
             })
-            firebase.database().ref("post").child(userResult.key).child(keyPost + '/likePost').once("value", (like) => {
+            likeArr = ` <strong style="color:gray;" id="likePost${keyPost}"><i class="fa fa-heart-o">&nbsp;</i>ถูกใจ</strong>`;
+            firebase.database().ref("post").child(userResult.key).child(keyPost + '/likePost').on("value", (like) => {
               like.forEach(like => {
-
+                if (like.key == user.uid) {
+                  likeArr = ` <strong style="color:	#FF69B4;" id="likePost${keyPost}"><i class="fa fa-heart-o">&nbsp;</i>ถูกใจ</strong>`;
+                }
                 likePostCount++
               })
             })
 
             firebase.database().ref("post").child(userResult.key).child(keyPost + '/images').once('value').then(image => {
               image.forEach(image => {
-                console.log(image.val())
+
                 imageArr += `<div class='col-6'><img src='${image.val().imagePost}' class='img-responsive img-post'></div> \n`;
 
               })
             }).then(() => {
-              console.log(commentCount);
+
               var domCard = document.createElement('div');
               domCard.className = 'card';
               domCard.innerHTML = ` 
@@ -157,12 +178,12 @@ function getWallPost() {
                   keyPost,
                   keyUserPost
                 })}>
-                  <strong style="color:gray;"><i class="fa fa-heart-o">&nbsp;</i>ถูกใจ</strong>
+                  ${likeArr}
                 </button>
               </div>
 
               <div class="col-md-6">
-                <button class="btn btn-light btn-block text-center"  id='allComment${keyPost}'><strong style="color:gray;" ><i class="fa fa-comment-o"></i>
+                <button class="btn btn-light btn-block text-center"  onclick="focusText(this)" key-focusText=${JSON.stringify(keyPost)}><strong style="color:gray;" ><i class="fa fa-comment-o"></i>
                     แสดงความคิดเห็น</strong>
                 </button>
               </div>
