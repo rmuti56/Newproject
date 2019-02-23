@@ -12,23 +12,34 @@ function likePost(id) {
       var nameLike = userResult.val().name || "";
       var lastNameLike = userResult.val().lastName || "";
       var pofileImageLike = userResult.val().pofileImage || "../image/default.png";
-
-      firebase.database().ref("post").child(keyUserPost).child(keyPost).child("likePost").once("value", like => {
-        like.forEach(like => {
-          if (user.uid == like.key) {
-            return firebase.database().ref("post").child(keyUserPost).child(keyPost).child("likePost").child(user.uid).remove();
-          } else {
-            firebase.database().ref("post").child(keyUserPost).child(keyPost).child("likePost").child(userResult.key).set({
-              name: nameLike,
-              lastName: lastNameLike,
-              pofileImage: pofileImageLike,
-              time: new Date()
+      var check = "";
+      var databaseRef = firebase.database().ref("post").child(keyUserPost).child(keyPost)
+      databaseRef.once("value", valuePost => {
+        check = valuePost.val().likePost
+        if (check == null) {
+          databaseRef.child("likePost").child(user.uid).set({
+            name: nameLike,
+            lastName: lastNameLike,
+            pofileImage: pofileImageLike,
+            time: Date.now()
+          })
+        } else {
+          databaseRef.child("likePost").once("value", like => {
+            like.forEach(like => {
+              if (user.uid == like.key) {
+                return databaseRef.child("likePost").child(user.uid).remove();
+              } else {
+                databaseRef.child("likePost").child(userResult.key).set({
+                  name: nameLike,
+                  lastName: lastNameLike,
+                  pofileImage: pofileImageLike,
+                  time: Date.now()
+                })
+              }
             })
-          }
-        })
+          })
+        }
       })
-
-
     })
   })
 }
